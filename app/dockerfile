@@ -11,11 +11,16 @@ RUN apt-get update && \
 	wget https://kumisystems.dl.sourceforge.net/project/virtualgl/2.6.5/virtualgl_2.6.5_amd64.deb && \
 	wget https://kumisystems.dl.sourceforge.net/project/turbovnc/2.2.7/turbovnc_2.2.7_amd64.deb && \
 # Installing chrome
-	wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
-	apt install -y ./google-chrome-stable_current_amd64.deb && \
+	# wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
+	# apt install -y ./google-chrome-stable_current_amd64.deb && \
 # End ---
-	dpkg -i virtualgl_*.deb && \
-	dpkg -i turbovnc_*.deb && \
+# Installing firefox
+	add-apt-repository ppa:mozillateam/ppa && \
+	apt update -y && \
+	apt install firefox-esr -y && \
+# End ---
+	apt install -y ./virtualgl_*.deb && \
+	apt install -y ./turbovnc_*.deb && \
 	mkdir ~/.vnc/ && \
 	mkdir ~/.dosbox && \
 	echo $PASSWORD | vncpasswd -f > ~/.vnc/passwd && \
